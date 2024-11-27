@@ -125,10 +125,18 @@ def predict_price(location, sqft, bath, bhk, proximity_to_transport, neighbourho
     # Predict the price
     return lr_clf.predict(x_scaled)[0]
 
+def get_user_input():
+    location = input("Enter the location: ").strip()
+    sqft = float(input("Enter the square footage (sqft): "))
+    bath = int(input("Enter the number of bathrooms: "))
+    bhk = int(input("Enter the number of BHK: "))
+    proximity_to_transport = float(input("Enter the proximity to transport (distance in km): "))
+    neighbourhood_rating = float(input("Enter the neighbourhood rating (1-10 scale): "))
+    return location, sqft, bath, bhk, proximity_to_transport, neighbourhood_rating
+
 # Main program
 print("House Price Prediction System")
 location, sqft, bath, bhk, proximity_to_transport, neighbourhood_rating = get_user_input()
-
 # Predict the price
 predicted_price = predict_price(location, sqft, bath, bhk, proximity_to_transport, neighbourhood_rating)
 print(f"Predicted Price: ₹{predicted_price:.2f} lakhs")  # Price is in lakhs
